@@ -1,3 +1,10 @@
 {
-  "welcomeFile": "todoapp/"
+  "welcomeFile": "todoapp/",
+  "routes": [
+    {
+      "source": "^/destination/(.*)$",
+      "target": "$1",
+      "destination": "sapui5-destination"
+    }
+  ]
 }

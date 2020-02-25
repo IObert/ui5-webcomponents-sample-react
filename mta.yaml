@@ -1,11 +1,10 @@
-
 _schema-version: 3.3.0
 ID: reacttodoapp
 version: 0.7.0
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
-  
+
 modules:
   - name: approuter
     type: approuter.nodejs
@@ -15,10 +14,11 @@ modules:
       memory: 256M
     properties:
       httpHeaders:
-      - X-Frame-Options: "ALLOW-FROM hana.ondemand.com"
+        - X-Frame-Options: "ALLOW-FROM hana.ondemand.com"
     requires:
       - name: html5_repo_runtime
       - name: uaa
+      - name: destination_service
   - name: ui_deployer
     type: com.sap.html5.application-content
     path: deployer
@@ -47,4 +47,9 @@ resources:
       path: ./xs-security.json
       service-plan: application
       service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: destination_service
+    parameters:
+      service-plan: lite
+      service: destination
     type: org.cloudfoundry.managed-service
